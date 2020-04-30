@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_SERVER_POINT;
+const baseURL = 'http://localhost:3001';
 
 const service = axios.create({
-    BASE_URL,
+    baseURL,
     withCredentials: true
 });
 
@@ -17,7 +17,7 @@ const AUTH_SERVICE = {
     logout() {
         return service.post('/api/logout', {})
     },
-    getUser(){
+    getUser() {
         return service.get('/api/isLoggedIn');
     }
 
