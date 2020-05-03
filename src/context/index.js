@@ -7,6 +7,8 @@ export const AuthContext = React.createContext();
 class AuthProvider extends React.Component {
     state = {
         formSignup: {
+            firstName: '',
+            lastName: '',
             email: '',
             password: ''
         },
@@ -70,7 +72,9 @@ class AuthProvider extends React.Component {
                     ...prevState,
                     formSignup: {
                         email: '',
-                        password: ''
+                        password: '',
+                        firstName: '',
+                        lastName: ''
                     },
                     currentUser: user,
                     isLoggedIn: true
@@ -85,6 +89,7 @@ class AuthProvider extends React.Component {
                         ...prevState,
                         message: err.response.data.message
                     }));
+                    return (<Redirect to='/' />);
                 }
             });
     };
@@ -107,7 +112,7 @@ class AuthProvider extends React.Component {
 
         AUTH_SERVICE.login(this.state.formLogin)
             .then(responseFromServer => {
-                console.log('res from server: ', responseFromServer);
+                console.log('respose from server: ', responseFromServer);
                 const {
                     data: { user, message }
                 } = responseFromServer;

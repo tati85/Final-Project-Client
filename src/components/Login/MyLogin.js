@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import {
     MDBNavbar,
     MDBNavbarBrand,
@@ -11,13 +11,8 @@ import {
     MDBMask,
     MDBRow,
     MDBCol,
-    MDBIcon,
-    MDBBtn,
     MDBView,
     MDBContainer,
-    MDBCard,
-    MDBCardBody,
-    MDBInput,
     MDBFormInline,
     MDBAnimation
 } from "mdbreact";
@@ -35,13 +30,13 @@ class MyLoginFormPage extends React.Component {
         this.setState(prevState => ({
             collapseID: prevState.collapseID !== collapseID ? collapseID : ""
         }));
-    toggleLogin() {
+    toggleLogin = () => {
         this.setState(prevState => ({
-            ...prevState,
             loginShow: !prevState.loginShow
-        }));
-    }
 
+        }));
+        console.log("inside toggleLogin***********************" + this.state.loginShow)
+    }
 
     render() {
         const overlay = (
@@ -51,6 +46,7 @@ class MyLoginFormPage extends React.Component {
                 onClick={this.toggleCollapse("navbarCollapse")}
             />
         );
+        let active = this.state.loginShow;
         return (
             <div id="classicformpage">
                 <Router>
@@ -127,11 +123,10 @@ class MyLoginFormPage extends React.Component {
 
                                 <MDBCol md="6" xl="5" className="mb-4">
                                     <MDBAnimation type="fadeInRight" delay=".7s">
-                                        {this.state.loginShow}?(
-                                            <LoginForm active={this.state.loginShowmy} />
-
-                                    ):(<SingupForm />)
-
+                                        {active
+                                            ? <LoginForm active={this.state.loginShow} onClickLogin={this.toggleLogin} />
+                                            : <SingupForm active={this.state.loginShow} onClickLogin={this.toggleLogin} />
+                                        }
                                     </MDBAnimation>
                                 </MDBCol>
                             </MDBRow>

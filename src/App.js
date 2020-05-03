@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login/Login';
+import logo from './logo.svg';
 import Home from './components/Home/Home';
 import { Switch, Route } from 'react-router-dom';
-import { Layout } from './components/Layout/Layout'
+import MyLoginFormPage from "./components/Login/MyLogin";
+
 
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/home' component={Home} />
-        </Switch>
-      </Layout>
+
+      <Switch>
+        <Route exact path='/' component={MyLoginFormPage} />
+        <Route exact path='/home' component={Home} />
+      </Switch>
+
 
     </div>
   );
 }
-
 export default App;

@@ -10,13 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { AuthContext } from '../../context/index';
-import context from '../../context';
-import { Redirect } from 'react-router-dom';
-import MyCarousel from '../Carousel/carousel'
-import { blue } from '@material-ui/core/colors';
 
 
 function Copyright() {
@@ -86,8 +81,6 @@ export default function Login() {
                         <Grid container component="main" className={classes.root}>
                             <CssBaseline />
                             <Grid item xs={false} sm={4} md={8} className={classes.image} />
-                            <MyCarousel></MyCarousel>
-
                             <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
                                 <div className={classes.paper}>
 
