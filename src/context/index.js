@@ -63,7 +63,6 @@ class AuthProvider extends React.Component {
         AUTH_SERVICE.signup(this.state.formSignup)
             .then(responseFromServer => {
 
-
                 const {
                     data: { user, message }
                 } = responseFromServer;
@@ -71,10 +70,9 @@ class AuthProvider extends React.Component {
                 this.setState(prevState => ({
                     ...prevState,
                     formSignup: {
-                        email: '',
-                        password: '',
                         firstName: '',
-                        lastName: ''
+                        lastName: '', email: '',
+                        password: ''
                     },
                     currentUser: user,
                     isLoggedIn: true

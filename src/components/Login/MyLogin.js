@@ -23,7 +23,8 @@ import SingupForm from '../Form/SingupForm';
 class MyLoginFormPage extends React.Component {
     state = {
         collapseID: "",
-        loginShow: true
+        loginShow: true,
+
     };
 
     toggleCollapse = collapseID => () =>
@@ -32,7 +33,8 @@ class MyLoginFormPage extends React.Component {
         }));
     toggleLogin = () => {
         this.setState(prevState => ({
-            loginShow: !prevState.loginShow
+            loginShow: !prevState.loginShow,
+
 
         }));
         console.log("inside toggleLogin***********************" + this.state.loginShow)
@@ -46,7 +48,8 @@ class MyLoginFormPage extends React.Component {
                 onClick={this.toggleCollapse("navbarCollapse")}
             />
         );
-        let active = this.state.loginShow;
+        const loginShow = this.state.loginShow;
+        console.log(loginShow + "                      loginShow in render")
         return (
             <div id="classicformpage">
                 <Router>
@@ -123,9 +126,9 @@ class MyLoginFormPage extends React.Component {
 
                                 <MDBCol md="6" xl="5" className="mb-4">
                                     <MDBAnimation type="fadeInRight" delay=".7s">
-                                        {active
-                                            ? <LoginForm active={this.state.loginShow} onClickLogin={this.toggleLogin} />
-                                            : <SingupForm active={this.state.loginShow} onClickLogin={this.toggleLogin} />
+                                        {loginShow
+                                            ? <LoginForm onClickLogin={this.toggleLogin} />
+                                            : <SingupForm onClickLogin={this.toggleLogin} />
                                         }
                                     </MDBAnimation>
                                 </MDBCol>

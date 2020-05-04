@@ -8,7 +8,7 @@ const service = axios.create({
 });
 
 const AUTH_SERVICE = {
-    singup(userData) {
+    signup(userData) {
         return service.post('/api/signup', userData);
     },
     login(userData) {

@@ -38,7 +38,7 @@ class SingupForm extends React.Component {
                                             icon="user"
                                             iconClass="white-text text-left"
                                             className="white-text"
-                                            // value={firstName}
+                                            value={firstName}
                                             label="Your first name"
                                             name="firstName"
                                             required
@@ -49,7 +49,7 @@ class SingupForm extends React.Component {
                                             iconClass="white-text"
                                             label="Your last name"
                                             icon="user"
-                                            // value={lastName}
+                                            value={lastName}
                                             name="lastName"
                                             required
                                             onChange={handleSignupInput}
@@ -59,7 +59,7 @@ class SingupForm extends React.Component {
                                             iconClass="white-text"
                                             label="Your email"
                                             icon="envelope"
-                                            // value={email}
+                                            value={email}
                                             name="email"
                                             group
                                             type="email"
@@ -74,7 +74,7 @@ class SingupForm extends React.Component {
                                             label="Your password"
                                             icon="lock"
                                             name="password"
-                                            // Q
+                                            value={password}
                                             group
                                             type="password"
                                             validate
@@ -82,12 +82,12 @@ class SingupForm extends React.Component {
                                         />
                                         <div className="text-center mt-4 black-text">
 
-                                            <MDBBtn color="indigo" type="submit">Login</MDBBtn>
+                                            <MDBBtn color="indigo" type="submit">Singup</MDBBtn>
                                             <hr className="hr-light" />
                                             <div className="text-center d-flex justify-content-center white-label">
                                                 <h6 className="mb-4 white-text">Have an Account?    </h6>
+                                                <MDBBtn color="indigo" onClick={this.handleToggleActive}>Login</MDBBtn>
 
-                                                <Link to={() => this.handleToggleActive()}>Login</Link>
 
                                             </div>
                                         </div>

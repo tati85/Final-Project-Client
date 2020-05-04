@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
     MDBIcon,
     MDBBtn,
@@ -12,7 +13,7 @@ import { AuthContext } from '../../context/index';
 class LoginForm extends React.Component {
     handleToggleActive = () => {
         this.props.onClickLogin();
-        console.log("inside handle togglective*********************")
+        console.log("inside handle togglective in login form*********************")
     }
 
     render() {
@@ -43,7 +44,7 @@ class LoginForm extends React.Component {
                                             iconClass="white-text"
                                             label="Your email"
                                             icon="envelope"
-                                            // value={email}
+                                            value={email}
                                             name="email"
                                             group
                                             type="email"
@@ -57,7 +58,7 @@ class LoginForm extends React.Component {
                                             iconClass="white-text"
                                             label="Your password"
                                             icon="lock"
-                                            // value={password}
+                                            value={password}
                                             name="password"
                                             group
                                             type="password"
@@ -71,7 +72,9 @@ class LoginForm extends React.Component {
                                             <hr className="hr-light" />
                                             <div className="text-center d-flex justify-content-center white-label">
                                                 <h6 className="mb-4 white-text">Don't have an account?    </h6>
-                                                <MDBBtn color="indigo" onClick={() => this.handleToggleActive()}>Sing Up</MDBBtn>
+                                                <MDBBtn outline color="indigo" onClick={this.handleToggleActive}>Sing Up</MDBBtn>
+
+
 
                                             </div>
                                         </div>
