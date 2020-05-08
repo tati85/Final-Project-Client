@@ -17,8 +17,8 @@ import {
     MDBAnimation
 } from "mdbreact";
 import "./Mylogin.css";
-import LoginForm from "../Form/LoginForm";
-import SingupForm from '../Form/SingupForm';
+import LoginForm from "../Authorization/LoginForm";
+import SingupForm from '../Authorization/SingupForm';
 
 class MyLoginFormPage extends React.Component {
     state = {
@@ -34,7 +34,6 @@ class MyLoginFormPage extends React.Component {
     toggleLogin = () => {
         this.setState(prevState => ({
             loginShow: !prevState.loginShow,
-
 
         }));
         console.log("inside toggleLogin***********************" + this.state.loginShow)
@@ -57,7 +56,7 @@ class MyLoginFormPage extends React.Component {
                         <MDBNavbar dark expand="md" fixed="top">
                             <MDBContainer>
                                 <MDBNavbarBrand>
-                                    <strong className="white-text">MDB</strong>
+                                    <strong className="white-text">REM-BILLS</strong>
                                 </MDBNavbarBrand>
                                 <MDBNavbarToggler
                                     onClick={this.toggleCollapse("navbarCollapse")}
@@ -68,15 +67,8 @@ class MyLoginFormPage extends React.Component {
                                     navbar
                                 >
                                     <MDBNavbarNav left>
-                                        <MDBNavItem active>
-                                            <MDBNavLink to="#!">Home</MDBNavLink>
-                                        </MDBNavItem>
-                                        <MDBNavItem>
-                                            <MDBNavLink to="#!">Link</MDBNavLink>
-                                        </MDBNavItem>
-                                        <MDBNavItem>
-                                            <MDBNavLink to="#!">Profile</MDBNavLink>
-                                        </MDBNavItem>
+
+
                                     </MDBNavbarNav>
                                     <MDBNavbarNav right>
                                         <MDBNavItem>

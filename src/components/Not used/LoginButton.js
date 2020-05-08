@@ -18,7 +18,7 @@ class ModalLoginButton extends Component {
         return (
             <MDBContainer>
                 <MDBBtn outline color="white" onClick={this.toggle(14)}>
-                    <MDBIcon far icon="user-circle" /> Login / Singup
+                    <MDBIcon far icon="user-circle" /> Logout
         </MDBBtn>
                 <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
                     <MDBModalHeader toggle={this.toggle(14)}>

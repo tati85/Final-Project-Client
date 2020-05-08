@@ -6,6 +6,7 @@ import React,
     from "react";
 
 import {
+
     MDBNavbar,
     MDBNavbarBrand,
     MDBNavbarNav,
@@ -17,7 +18,8 @@ import {
     MDBDropdownToggle,
     MDBDropdownMenu,
     MDBDropdownItem,
-    MDBIcon
+    MDBIcon,
+    IMDBAvatar
 }
 
     from "mdbreact";
@@ -28,16 +30,14 @@ import {
 
     from 'react-router-dom';
 import './NavBar.css';
-import ModalLoginButton from '../Button/LoginButton';
+import ModalLoginButton from '../Not used/LoginButton';
 import Logo from "../../assets/my-logo.ico";
 
 
 class NavBar extends Component {
     state = {
         isOpen: false
-    }
-
-        ;
+    };
 
     toggleCollapse = () => {
         this.setState({
@@ -50,14 +50,44 @@ class NavBar extends Component {
     render() {
         return (
             <Router>
-                <MDBNavbar color="transparent" dark expand="md" className='my-nav'>
+                <MDBNavbar color="default-color" dark expand="md" className='my-nav'>
                     <MDBNavbarBrand>
                         <img className='my-logo' src={Logo} />
-                        <strong className="white-text"> Navbar</strong>
+                        <strong className="white-text"> REM-BILLS</strong>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                        <MDBNavbarNav left> <MDBNavItem active> <MDBNavLink to="#!">Home</MDBNavLink> </MDBNavItem> </MDBNavbarNav> <MDBNavbarNav right> <MDBNavItem> <MDBNavLink to="#!"> <ModalLoginButton /> </MDBNavLink> </MDBNavItem> </MDBNavbarNav> </MDBCollapse> </MDBNavbar> </Router>);
+                        <MDBNavbarNav left>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
+                            <MDBNavItem active>
+                                <MDBNavLink to="#!"> +Account</MDBNavLink>
+                            </MDBNavItem >
+                            <MDBNavItem>
+                                <MDBNavLink to="#!">
+
+                                    <img
+                                        src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
+                                        alt=""
+                                        className="rounded-circle img-fluid" style={{ width: "30px" }}
+                                    />
+
+                                </MDBNavLink>
+                            </MDBNavItem>
+
+                            <MDBNavItem className='lm-3'>
+                                <MDBNavLink to="#!">
+                                    Logout
+                            <MDBIcon icon="sign-out-alt" />
+
+                                </MDBNavLink>
+                            </MDBNavItem>
+
+
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBNavbar>
+            </Router>);
     }
 }
 

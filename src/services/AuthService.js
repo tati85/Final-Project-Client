@@ -24,4 +24,25 @@ const AUTH_SERVICE = {
 
 }
 
+export const PLAID_SERVICE = {
+    addAccount(userData) {
+        return service.post('/api/creditcard/add', userData);
+    },
+    deleteAccount(id) {
+        return service.delete(`/api/plaid/accounts/${id}`);
+    },
+    allAccounts() {
+        return service.get('/api/credicard/accounts');
+    },
+    transactions(data) {
+        return service.post('/api/creditcard/transactions', data);
+    },
+    cardBills() {
+        return service.get('/api/offlineaccount/bills');
+    }
+
+
+
+}
+
 export default AUTH_SERVICE;
