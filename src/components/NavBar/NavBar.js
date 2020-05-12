@@ -14,12 +14,8 @@ import {
     MDBNavLink,
     MDBNavbarToggler,
     MDBCollapse,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
     MDBIcon,
-    IMDBAvatar
+
 }
 
     from "mdbreact";
@@ -30,8 +26,8 @@ import {
 
     from 'react-router-dom';
 import './NavBar.css';
-import ModalLoginButton from '../Not used/LoginButton';
 import Logo from "../../assets/my-logo.ico";
+import ModalProfile from '../NavLeft/UserProfile';
 
 
 class NavBar extends Component {
@@ -52,7 +48,7 @@ class NavBar extends Component {
             <Router>
                 <MDBNavbar color="default-color" dark expand="md" className='my-nav'>
                     <MDBNavbarBrand>
-                        <img className='my-logo' src={Logo} />
+                        <img className='my-logo' src={Logo} alt="logo" />
                         <strong className="white-text"> REM-BILLS</strong>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -60,17 +56,10 @@ class NavBar extends Component {
                         <MDBNavbarNav left>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
-                            <MDBNavItem active>
-                                <MDBNavLink to="#!"> +Account</MDBNavLink>
-                            </MDBNavItem >
+
                             <MDBNavItem>
                                 <MDBNavLink to="#!">
-
-                                    <img
-                                        src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
-                                        alt=""
-                                        className="rounded-circle img-fluid" style={{ width: "30px" }}
-                                    />
+                                    <ModalProfile />
 
                                 </MDBNavLink>
                             </MDBNavItem>

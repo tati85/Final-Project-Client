@@ -3,20 +3,27 @@ import {
     DELETE_ACCOUNT,
     GET_ACCOUNTS,
     ACCOUNTS_LOADING,
-    GET_ACCOUNTS_BILL,
-    ACCOUNTS_BILL_LOADING,
     GET_TRANSACTIONS,
-    TRANSACTIONS_LOADING
+    TRANSACTIONS_LOADING,
+    ADD_ACCOUNTS_OFF,
+    DELETE_ACCOUNTS_OFF,
+    GET_ACCOUNTS_OFF,
+    OFF_ACCOUNTS_LOADING,
+    GET_BILLS_ACCOUNT,
+    GET_OFF_BILLS
+
 
 } from "../actions/types";
 
 const initialState = {
     accounts: [],
-    accountsBill: [],
+    accountsOff: [],
+    billsOff: [],
+    bills: [],
     transactions: [],
     accountsLoading: false,
     transactionsLoading: false,
-    accountsBillLoading: false
+    accountsOffLoading: false
 };
 
 export default function (state = initialState, action) {
@@ -31,16 +38,38 @@ export default function (state = initialState, action) {
                 ...state,
                 accounts: [action.payload, ...state.accounts]
             };
-        case ACCOUNTS_BILL_LOADING:
+        case GET_BILLS_ACCOUNT:
             return {
                 ...state,
-                accountsBillLoading: false
+                bills: [action.payload, ...state.bills]
             };
-        case GET_ACCOUNTS_BILL:
+        case GET_OFF_BILLS:
             return {
                 ...state,
-                accountsBill: action.payload,
-                accountsBillLoading: false
+                billsOff: [action.payload, ...state.billsOff]
+            };
+        case ADD_ACCOUNTS_OFF:
+            return {
+                ...state,
+                accountsOff: [action.payload, ...state.accountsOff]
+            };
+        case OFF_ACCOUNTS_LOADING:
+            return {
+                ...state,
+                accountsOffLoading: false
+            };
+        case DELETE_ACCOUNTS_OFF:
+            return {
+                ...state,
+                accountsOff: state.accountsOff.filter(
+                    accountsOff => accountsOff.name !== action.payload
+                )
+            };
+        case GET_ACCOUNTS_OFF:
+            return {
+                ...state,
+                accountsOff: action.payload,
+                accountsOffLoading: false
             };
         case DELETE_ACCOUNT:
             return {

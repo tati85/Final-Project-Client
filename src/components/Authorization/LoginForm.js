@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
 import {
     MDBIcon,
     MDBBtn,
@@ -8,14 +9,17 @@ import {
     MDBInput,
 
 } from "mdbreact";
-
+import { connect } from 'react-redux';
+import { loginUser } from "../../actions/authActions";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
 class LoginForm extends React.Component {
 
     state = {
         email: "",
         password: "",
-        error: {}
+        errors: {}
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -25,13 +29,25 @@ class LoginForm extends React.Component {
         const userData = {
             email: this.state.email,
             password: this.state.password
-        }
+        };
+        this.props.loginUser(userData);
     };
-
 
     handleToggleActive = () => {
         this.props.onClickLogin();
         console.log("inside handle togglective in login form*********************")
+    };
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push('/home')
+        };
+
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
     }
 
     render() {
@@ -49,7 +65,7 @@ class LoginForm extends React.Component {
                             <hr className="hr-light" />
 
                             <MDBInput
-                                className="white-text"
+                                className={classnames('', { invalid: errors.email }, 'white-text')}
                                 iconClass="white-text"
                                 label="Your email"
                                 icon="envelope"
@@ -58,13 +74,13 @@ class LoginForm extends React.Component {
                                 group
                                 type="email"
                                 validate
-                                error="wrong"
                                 success="right"
                                 error={errors.email}
                                 onChange={this.onChange}
                             />
+                            <span className="red-text">{errors.email}</span>
                             <MDBInput
-                                className="white-text"
+                                className={classnames('', { invalid: errors.password }, 'white-text')}
                                 iconClass="white-text"
                                 label="Your password"
                                 icon="lock"
@@ -76,6 +92,7 @@ class LoginForm extends React.Component {
                                 error={errors.password}
                                 onChange={this.onChange}
                             />
+                            <span className="red-text">{errors.password}</span>
                             <div className="text-center mt-4 black-text">
                                 <MDBBtn color="indigo" type="submit">Login</MDBBtn>
 
@@ -100,4 +117,18 @@ class LoginForm extends React.Component {
 
 
 }
-export default LoginForm;
+LoginForm.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+})
+
+export default connect(mapStateToProps, { loginUser })(withRouter(LoginForm));
+
+

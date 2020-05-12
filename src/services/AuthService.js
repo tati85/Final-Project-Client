@@ -17,15 +17,15 @@ const AUTH_SERVICE = {
     logout() {
         return service.post('/api/logout', {})
     },
-    getUser() {
-        return service.get('/api/isLoggedIn');
+    update(userData) {
+        service.patch('/api/user/profile', userData)
     }
-
 
 }
 
 export const PLAID_SERVICE = {
     addAccount(userData) {
+        console.log("inside service to make a post to de server for add accounts")
         return service.post('/api/creditcard/add', userData);
     },
     deleteAccount(id) {
@@ -36,6 +36,9 @@ export const PLAID_SERVICE = {
     },
     transactions(data) {
         return service.post('/api/creditcard/transactions', data);
+    },
+    offBills() {
+        return service.get('/api/offlineaccount/bills');
     },
     cardBills() {
         return service.get('/api/offlineaccount/bills');
