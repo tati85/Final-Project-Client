@@ -18,7 +18,10 @@ const AUTH_SERVICE = {
         return service.post('/api/logout', {})
     },
     update(userData) {
-        service.patch('/api/user/profile', userData)
+        console.log("user data in services" + userData)
+        return service.post('/api/user/profile', userData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        })
     }
 
 }
@@ -29,7 +32,7 @@ export const PLAID_SERVICE = {
         return service.post('/api/creditcard/add', userData);
     },
     deleteAccount(id) {
-        return service.delete(`/api/plaid/accounts/${id}`);
+        return service.delete(`/api/accounts/:${id}`);
     },
     allAccounts() {
         return service.get('/api/credicard/accounts');
@@ -42,9 +45,28 @@ export const PLAID_SERVICE = {
     },
     cardBills() {
         return service.get('/api/offlineaccount/bills');
-    }
+    },
+    paidCard(data) {
+        return service.post(`/apid/creditcard/:${data}/paid`, {})
+    },
+    paidOffCard(data) {
+        return service.post(`'/apid/offlineaccount/:${data}/paid'`, {})
+    },
 
-
+}
+export const OFFLINE_SERVICE = {
+    addAccount(userData) {
+        console.log("inside OFF LINEACCOUNT service to add OFFLINE accounts", userData)
+        return service.post('/api/offlineaccount', userData);
+    },
+    deleteAccount(id) {
+        console.log("inside OFFLINEACCOUNT service to make a delete to de server for add OFFLINE accounts")
+        return service.delete(`/api/offlineaccount/delete/:${id}`);
+    },
+    allAccounts() {
+        console.log("inside all account client axios call")
+        return service.get('/api/offlineaccount/accounts');
+    },
 
 }
 

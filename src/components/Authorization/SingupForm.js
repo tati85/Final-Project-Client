@@ -23,7 +23,7 @@ class SingupForm extends React.Component {
         lastName: "",
         email: "",
         password: "",
-        errors: {}
+        // errors: {}
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -56,7 +56,7 @@ class SingupForm extends React.Component {
     }
 
     render() {
-        const { errors } = this.state;
+        // const { errors } = this.state;
 
         return (
             <div>
@@ -71,28 +71,28 @@ class SingupForm extends React.Component {
                             <MDBInput
                                 icon="user"
                                 iconClass="white-text text-left"
-                                className={classnames('', { invalid: errors.firstName }, 'white-text')}
+                                className='white-text'
                                 value={this.state.firstName}
                                 label="Your first name"
                                 name="firstName"
                                 required
-                                error={errors.firstName}
+                                // error={errors.firstName}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.firstName}</span>
+
                             <MDBInput
-                                className={classnames('', { invalid: errors.lastName }, 'white-text')}
+                                className='white-text'
                                 iconClass="white-text"
                                 label="Your last name"
                                 icon="user"
                                 value={this.state.lastName}
                                 name="lastName"
-                                error={errors.lastName}
+                                // error={errors.lastName}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.lastName}</span>
+
                             <MDBInput
-                                className={classnames('', { invalid: errors.email }, 'white-text')}
+                                className='white-text'
                                 iconClass="white-text"
                                 label="Your email"
                                 icon="envelope"
@@ -102,12 +102,12 @@ class SingupForm extends React.Component {
                                 type="email"
                                 validate
                                 success="right"
-                                error={errors.email}
+                                // error={errors.email}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.email}</span>
+
                             <MDBInput
-                                className={classnames('', { invalid: errors.password }, 'white-text')}
+                                className='white-text'
                                 iconClass="white-text"
                                 label="Your password"
                                 icon="lock"
@@ -116,10 +116,10 @@ class SingupForm extends React.Component {
                                 group
                                 type="password"
                                 validate
-                                error={errors.password}
+                                // error={errors.password}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.password}</span>
+
                             <div className="text-center mt-4 black-text">
 
                                 <MDBBtn color="indigo" type="submit">Singup</MDBBtn>
@@ -140,14 +140,14 @@ class SingupForm extends React.Component {
 
 SingupForm.propTypes = {
     registerUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
+    // errors: PropTypes.object.isRequired
 
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    auth: state.auth
+    // errors: state.errors
 })
 
 export default connect(mapStateToProps, { registerUser })(withRouter(SingupForm));

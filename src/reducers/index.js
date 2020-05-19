@@ -5,6 +5,6 @@ import accountReducer from "./accountReducer";
 
 export default combineReducers({
     auth: authReducer,
-    errors: errorReducer,
+    // errors: errorReducer,
     plaid: accountReducer
 });

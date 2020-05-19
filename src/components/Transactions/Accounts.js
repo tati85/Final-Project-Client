@@ -8,7 +8,7 @@ import {
     deleteAccount
 } from "../../actions/accountActions";
 import { logoutUser } from "../../actions/authActions";
-import MaterialTable from "material-table"; // https://mbrn.github.io/material-table/#/
+// import MaterialTable from "material-table"; // https://mbrn.github.io/material-table/#/
 
 class Accounts extends Component {
     componentDidMount() {

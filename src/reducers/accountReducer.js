@@ -56,13 +56,13 @@ export default function (state = initialState, action) {
         case OFF_ACCOUNTS_LOADING:
             return {
                 ...state,
-                accountsOffLoading: false
+                accountsOffLoading: true
             };
         case DELETE_ACCOUNTS_OFF:
             return {
                 ...state,
                 accountsOff: state.accountsOff.filter(
-                    accountsOff => accountsOff.name !== action.payload
+                    accountsOff => accountsOff.id !== action.payload
                 )
             };
         case GET_ACCOUNTS_OFF:

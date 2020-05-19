@@ -21,13 +21,17 @@ import {
     from "mdbreact";
 
 import {
-    BrowserRouter as Router
+    BrowserRouter as Router, withRouter
 }
-
     from 'react-router-dom';
+import { browserHistory, Redirect } from 'react-router';
+
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import './NavBar.css';
 import Logo from "../../assets/my-logo.ico";
-import ModalProfile from '../NavLeft/UserProfile';
+// import ModalProfile from '../NavLeft/UserProfile';
+import { logoutUser } from "../../actions/authActions";
 
 
 class NavBar extends Component {
@@ -35,12 +39,22 @@ class NavBar extends Component {
         isOpen: false
     };
 
+
     toggleCollapse = () => {
         this.setState({
             isOpen: !this.state.isOpen
         }
 
         );
+    }
+    onLogoutClick = () => {
+
+        this.props.logoutUser();
+        console.log("inside logout onClick");
+        this.props.history.push('/');
+    }
+    handleclick = () => {
+        this.props.history.push('/profile');
     }
 
     render() {
@@ -59,13 +73,14 @@ class NavBar extends Component {
 
                             <MDBNavItem>
                                 <MDBNavLink to="#!">
-                                    <ModalProfile />
+                                    <input id="image" type="image" onClick={this.handleclick} src={this.props.auth.user.image}
+                                        alt="user" className="rounded-circle img-fluid" style={{ width: "40px" }}></input>
 
                                 </MDBNavLink>
                             </MDBNavItem>
 
                             <MDBNavItem className='lm-3'>
-                                <MDBNavLink to="#!">
+                                <MDBNavLink to="#" onClick={this.onLogoutClick}>
                                     Logout
                             <MDBIcon icon="sign-out-alt" />
 
@@ -79,5 +94,20 @@ class NavBar extends Component {
             </Router>);
     }
 }
+NavBar.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
 
-export default NavBar;
+}
+const mapStateToProps = state => ({
+    auth: state.auth
+
+});
+
+export default connect(
+    mapStateToProps,
+    { logoutUser }
+)(withRouter(NavBar))
+
+
+

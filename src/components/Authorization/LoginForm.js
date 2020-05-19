@@ -12,10 +12,9 @@ import {
 import { connect } from 'react-redux';
 import { loginUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
-import classnames from "classnames";
+// import classnames from "classnames";
 
 class LoginForm extends React.Component {
-
     state = {
         email: "",
         password: "",
@@ -32,7 +31,6 @@ class LoginForm extends React.Component {
         };
         this.props.loginUser(userData);
     };
-
     handleToggleActive = () => {
         this.props.onClickLogin();
         console.log("inside handle togglective in login form*********************")
@@ -43,15 +41,11 @@ class LoginForm extends React.Component {
             this.props.history.push('/home')
         };
 
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
+
     }
 
     render() {
-        const { errors } = this.state;
+        // const { errors } = this.state;
         return (
 
             <div>
@@ -65,7 +59,7 @@ class LoginForm extends React.Component {
                             <hr className="hr-light" />
 
                             <MDBInput
-                                className={classnames('', { invalid: errors.email }, 'white-text')}
+                                className='white-text'
                                 iconClass="white-text"
                                 label="Your email"
                                 icon="envelope"
@@ -75,12 +69,11 @@ class LoginForm extends React.Component {
                                 type="email"
                                 validate
                                 success="right"
-                                error={errors.email}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.email}</span>
+
                             <MDBInput
-                                className={classnames('', { invalid: errors.password }, 'white-text')}
+                                className='white-text'
                                 iconClass="white-text"
                                 label="Your password"
                                 icon="lock"
@@ -89,10 +82,9 @@ class LoginForm extends React.Component {
                                 group
                                 type="password"
                                 validate
-                                error={errors.password}
                                 onChange={this.onChange}
                             />
-                            <span className="red-text">{errors.password}</span>
+
                             <div className="text-center mt-4 black-text">
                                 <MDBBtn color="indigo" type="submit">Login</MDBBtn>
 
@@ -120,13 +112,13 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+
 
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    auth: state.auth
+
 })
 
 export default connect(mapStateToProps, { loginUser })(withRouter(LoginForm));

@@ -6,7 +6,7 @@ import { logoutUser } from "../../actions/authActions";
 import { getAccounts, addAccount } from "../../actions/accountActions";
 
 import Accounts from "./Accounts";
-import Spinner from "./Spinner";
+import Spinner from "../Accounts/CreditCardAccounts/Spinner";
 
 class Dashboard extends Component {
     componentDidMount() {
