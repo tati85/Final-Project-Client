@@ -54,8 +54,9 @@ class MyProfile extends React.Component {
     };
 
     onChange = e => {
-
-        this.setState({ [e.target.name]: e.target.value })
+        let val = e.target.value;
+        let nam = e.target.name;
+        this.setState({ [nam]: val });
     };
 
     handleImageChange = (event) => {

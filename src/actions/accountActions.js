@@ -22,14 +22,15 @@ export const addAccount = plaidData => dispatch => {
     const accounts = plaidData.accounts;
     console.log("inside addccount in accountActions")
     PLAID_SERVICE.addAccount(plaidData)
-        .then(res => {
-            console.log("account added succesfull in db")
+        .then(res => console.log("account added succesfull in db"))
+        .then(res=>{
             dispatch({
                 type: ADD_ACCOUNT,
                 payload: res.data
-            })
+            })    
 
         })
+           
         .then(data =>
             accounts ? dispatch(getTransactions(accounts.concat(data.payload))) : null
         )
