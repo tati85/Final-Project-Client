@@ -7,6 +7,7 @@ const service = axios.create({
     withCredentials: true
 });
 
+
 const AUTH_SERVICE = {
     signup(userData) {
         return service.post('/api/signup', userData);

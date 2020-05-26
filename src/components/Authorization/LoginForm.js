@@ -115,12 +115,18 @@ LoginForm.propTypes = {
 
 
 }
-
 const mapStateToProps = state => ({
-    auth: state.auth
+    user: state.auth.user
+});
+const mapDispatchToProps = dispactch => ({
+    loginUser: () => dispactch(loginUser())
+});
 
-})
+// const mapStateToProps = state => ({
+//     auth: state.auth
 
-export default connect(mapStateToProps, { loginUser })(withRouter(LoginForm));
+// })
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm));
 
 
