@@ -66,7 +66,7 @@ export const addCreditAccount = account =>
     });
 
 //delete credit cards*******
-export const deletedAccount = id =>
+export const deleteAccount = id =>
     apiRequest({
         url: url.deleteCredidCardUrl + id,
         method: 'delete',

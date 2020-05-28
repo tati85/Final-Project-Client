@@ -1,8 +1,8 @@
 
 import { combineReducers } from "redux";
-import { authReducer } from "./auth/authorization";
-import { creditReducer } from "./creditCards/creditCardAccounts";
-import { offlineReducer } from "./offlineAccounts/offlineAccounts";
+import authReducer from "./auth/authorization";
+import creditReducer from "./creditCards/creditCardAccounts";
+import offlineReducer from "./offlineAccounts/offlineAccounts";
 
 
 

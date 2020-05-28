@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter } from 'react-router-dom';
 import { MDBNav, MDBCard, MDBCardBody, MDBCardTitle, MDBContainer, MDBNavItem, MDBNavLink, MDBTabPane, MDBTabContent, MDBRow, MDBCol } from "mdbreact";
-import '../../components/Layout/Layout';
-import '../../components/NavBar/NavBar'
-import NavBar from "../../components/NavBar/NavBar";
-import { Layout } from "../../components/Layout/Layout";
+import '../Layout/Layout';
+import '../NavBar/NavBar'
+import NavBar from "../NavBar/NavBar";
+import { Layout } from "../Layout/Layout";
 import OffLineAccountList from '../Accounts/OfflineAccounts/OfflineAccountList';
 import CreditAccountList from "../Accounts/CreditCardAccounts/CreditcardAccountList";
 
@@ -59,14 +59,14 @@ export default class MyTab extends React.Component {
                                     <MDBCardBody>
                                         <MDBCardTitle>Credit Card Accounts</MDBCardTitle>
                                         <hr className="mt-2" />
-                                        <CreditAccountList />
+                                        {/*<CreditAccountList />*/}
                                     </MDBCardBody>
                                 </MDBCard>
                                 <MDBCard className="mt-5">
                                     <MDBCardBody>
                                         <MDBCardTitle>Offline Accounts</MDBCardTitle>
                                         <hr className="mt-2" />
-                                        <OffLineAccountList />
+                                        {/* <OffLineAccountList />*/}
                                     </MDBCardBody>
                                 </MDBCard>
                             </MDBContainer>

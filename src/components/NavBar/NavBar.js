@@ -16,9 +16,7 @@ import {
     MDBCollapse,
     MDBIcon,
 
-}
-
-    from "mdbreact";
+} from "mdbreact";
 
 import {
     BrowserRouter as Router, withRouter
@@ -27,19 +25,17 @@ import {
 import { browserHistory, Redirect } from 'react-router';
 
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import './NavBar.css';
 import Logo from "../../assets/my-logo.ico";
 // import ModalProfile from '../NavLeft/UserProfile';
-import { logoutUser } from "../../actions/authActions";
+// import { logoutUser } from "../../actions/authActions";
 
 
 class NavBar extends Component {
     state = {
         isOpen: false
     };
-
-
     toggleCollapse = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -94,20 +90,25 @@ class NavBar extends Component {
             </Router>);
     }
 }
-NavBar.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+// NavBar.propTypes = {
+//     logoutUser: PropTypes.func.isRequired,
+//     auth: PropTypes.object.isRequired
 
-}
+// }
+// const mapStateToProps = state => ({
+//     user: state.auth.user,
+//     is
+// });
+
 const mapStateToProps = state => ({
-    auth: state.auth
-
+    user: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated
+});
+const mapDispatchToProps = dispactch => ({
+    logoutUser: () => dispactch(logoutUser())
 });
 
-export default connect(
-    mapStateToProps,
-    { logoutUser }
-)(withRouter(NavBar))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar))
 
 
 

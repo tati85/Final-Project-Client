@@ -23,7 +23,7 @@ class SingupForm extends React.Component {
         lastName: "",
         email: "",
         password: "",
-        // errors: {}
+        errors: {}
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -36,7 +36,7 @@ class SingupForm extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
-        this.props.registerUser(newUser);
+        this.props.signupUser(newUser);
     };
 
     handleToggleActive = () => {
@@ -44,7 +44,7 @@ class SingupForm extends React.Component {
     };
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
+        if (nextProps.isAuthenticated) {
             this.props.history.push('/home')
         };
 
@@ -138,16 +138,23 @@ class SingupForm extends React.Component {
     }
 };
 
-SingupForm.propTypes = {
-    registerUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-    // errors: PropTypes.object.isRequired
+// SingupForm.propTypes = {
+//     registerUser: PropTypes.func.isRequired,
+//     auth: PropTypes.object.isRequired
+//     // errors: PropTypes.object.isRequired
 
-}
+// }
 
+// const mapStateToProps = state => ({
+//     auth: state.auth
+//     // errors: state.errors
+// })
 const mapStateToProps = state => ({
-    auth: state.auth
-    // errors: state.errors
-})
+    user: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated
+});
+const mapDispatchToProps = dispactch => ({
+    signupUser: () => dispactch(signupUser())
+});
 
 export default connect(mapStateToProps, { registerUser })(withRouter(SingupForm));
