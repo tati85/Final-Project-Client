@@ -1,180 +1,180 @@
-import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import AUTH_SERVICE from '../services/AuthService';
+// import React from 'react';
+// import { withRouter, Redirect } from 'react-router-dom';
+// import AUTH_SERVICE from '../services/AuthService';
 
-export const AuthContext = React.createContext();
+// export const AuthContext = React.createContext();
 
-class AuthProvider extends React.Component {
-    state = {
-        formSignup: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: ''
-        },
-        formLogin: {
-            email: '',
-            password: ''
-        },
-        currentUser: {},
-        isLoggedIn: false,
-        message: null
-    };
+// class AuthProvider extends React.Component {
+//     state = {
+//         formSignup: {
+//             firstName: '',
+//             lastName: '',
+//             email: '',
+//             password: ''
+//         },
+//         formLogin: {
+//             email: '',
+//             password: ''
+//         },
+//         currentUser: {},
+//         isLoggedIn: false,
+//         message: null
+//     };
 
-    componentDidMount() {
-        AUTH_SERVICE.getUser()
-            .then(responseFromServer => {
-                // console.log('res: ', responseFromServer);
+//     componentDidMount() {
+//         AUTH_SERVICE.getUser()
+//             .then(responseFromServer => {
+//                 // console.log('res: ', responseFromServer);
 
-                const { user } = responseFromServer.data;
+//                 const { user } = responseFromServer.data;
 
-                this.setState(prevState => ({
-                    ...prevState,
-                    currentUser: user,
-                    isLoggedIn: true
-                }));
-            })
-            .catch(err =>
-                console.log('Error while getting the user: ', err.response.data)
-            );
-    }
+//                 this.setState(prevState => ({
+//                     ...prevState,
+//                     currentUser: user,
+//                     isLoggedIn: true
+//                 }));
+//             })
+//             .catch(err =>
+//                 console.log('Error while getting the user: ', err.response.data)
+//             );
+//     }
 
-    handleSignupInput = e => {
-        const {
-            target: { name, value }
-        } = e;
+//     handleSignupInput = e => {
+//         const {
+//             target: { name, value }
+//         } = e;
 
-        // console.log(name, value);
-        this.setState(prevState => ({
-            ...prevState,
-            formSignup: {
-                ...prevState.formSignup,
-                [name]: value
-            }
-        }));
-    };
+//         // console.log(name, value);
+//         this.setState(prevState => ({
+//             ...prevState,
+//             formSignup: {
+//                 ...prevState.formSignup,
+//                 [name]: value
+//             }
+//         }));
+//     };
 
-    handleSignupSubmit = e => {
-        e.preventDefault();
-        // console.log(this.state.formSignup);
+//     handleSignupSubmit = e => {
+//         e.preventDefault();
+//         // console.log(this.state.formSignup);
 
-        // AUTH_SERVICE.signup({ username, email, password })
-        // the same as above        ^^^^^^
-        AUTH_SERVICE.signup(this.state.formSignup)
-            .then(responseFromServer => {
+//         // AUTH_SERVICE.signup({ username, email, password })
+//         // the same as above        ^^^^^^
+//         AUTH_SERVICE.signup(this.state.formSignup)
+//             .then(responseFromServer => {
 
-                const {
-                    data: { user, message }
-                } = responseFromServer;
+//                 const {
+//                     data: { user, message }
+//                 } = responseFromServer;
 
-                this.setState(prevState => ({
-                    ...prevState,
-                    formSignup: {
-                        firstName: '',
-                        lastName: '', email: '',
-                        password: ''
-                    },
-                    currentUser: user,
-                    isLoggedIn: true
-                }));
-                alert(`${message}`);
-                this.props.history.push('/home');
-            })
-            .catch(err => {
-                // console.log(err.response);
-                if (err.response && err.response.data) {
-                    this.setState(prevState => ({
-                        ...prevState,
-                        message: err.response.data.message
-                    }));
-                    return (<Redirect to='/' />);
-                }
-            });
-    };
+//                 this.setState(prevState => ({
+//                     ...prevState,
+//                     formSignup: {
+//                         firstName: '',
+//                         lastName: '', email: '',
+//                         password: ''
+//                     },
+//                     currentUser: user,
+//                     isLoggedIn: true
+//                 }));
+//                 alert(`${message}`);
+//                 this.props.history.push('/home');
+//             })
+//             .catch(err => {
+//                 // console.log(err.response);
+//                 if (err.response && err.response.data) {
+//                     this.setState(prevState => ({
+//                         ...prevState,
+//                         message: err.response.data.message
+//                     }));
+//                     return (<Redirect to='/' />);
+//                 }
+//             });
+//     };
 
-    handleLoginInput = e => {
-        const {
-            target: { name, value }
-        } = e;
-        this.setState(prevState => ({
-            ...prevState,
-            formLogin: {
-                ...prevState.formLogin,
-                [name]: value
-            }
-        }));
-    };
+//     handleLoginInput = e => {
+//         const {
+//             target: { name, value }
+//         } = e;
+//         this.setState(prevState => ({
+//             ...prevState,
+//             formLogin: {
+//                 ...prevState.formLogin,
+//                 [name]: value
+//             }
+//         }));
+//     };
 
-    handleLoginSubmit = e => {
-        e.preventDefault();
+//     handleLoginSubmit = e => {
+//         e.preventDefault();
 
-        AUTH_SERVICE.login(this.state.formLogin)
-            .then(responseFromServer => {
-                console.log('respose from server: ', responseFromServer);
-                const {
-                    data: { user, message }
-                } = responseFromServer;
+//         AUTH_SERVICE.login(this.state.formLogin)
+//             .then(responseFromServer => {
+//                 console.log('respose from server: ', responseFromServer);
+//                 const {
+//                     data: { user, message }
+//                 } = responseFromServer;
 
-                this.setState(prevState => ({
-                    ...prevState,
-                    formLogin: {
-                        email: '',
-                        password: ''
-                    },
-                    currentUser: user,
-                    isLoggedIn: true
-                }));
-                alert(`${message}`);
-                this.props.history.push('/home');
-            })
-            .catch(err => {
-                // console.log(err.response);
-                if (err.response && err.response.data) {
-                    this.setState(prevState => ({
-                        ...prevState,
-                        message: err.response.data.message
+//                 this.setState(prevState => ({
+//                     ...prevState,
+//                     formLogin: {
+//                         email: '',
+//                         password: ''
+//                     },
+//                     currentUser: user,
+//                     isLoggedIn: true
+//                 }));
+//                 alert(`${message}`);
+//                 this.props.history.push('/home');
+//             })
+//             .catch(err => {
+//                 // console.log(err.response);
+//                 if (err.response && err.response.data) {
+//                     this.setState(prevState => ({
+//                         ...prevState,
+//                         message: err.response.data.message
 
-                    }));
-                    // this.props.history.push('/');
-                    console.log(this.state.message + "*****************");
-                    return (<Redirect to='/' />);
-                }
-            });
-    };
+//                     }));
+//                     // this.props.history.push('/');
+//                     console.log(this.state.message + "*****************");
+//                     return (<Redirect to='/' />);
+//                 }
+//             });
+//     };
 
 
-    handleLogout = () => {
-        AUTH_SERVICE.logout()
-            .then(() => {
-                this.setState(prevState => ({
-                    ...prevState,
-                    currentUser: {},
-                    isLoggedIn: false
-                }));
-                this.props.history.push('/');
-            })
-            .catch(err => alert('Error while logout: ', err));
-    };
+//     handleLogout = () => {
+//         AUTH_SERVICE.logout()
+//             .then(() => {
+//                 this.setState(prevState => ({
+//                     ...prevState,
+//                     currentUser: {},
+//                     isLoggedIn: false
+//                 }));
+//                 this.props.history.push('/');
+//             })
+//             .catch(err => alert('Error while logout: ', err));
+//     };
 
-    render() {
-        const { state, handleSignupInput, handleSignupSubmit, handleLoginInput, handleLoginSubmit, handleLogout } = this;
-        return (
-            <div>
-                <AuthContext.Provider
-                    value={{
-                        state,
-                        handleSignupInput,
-                        handleSignupSubmit,
-                        handleLoginInput,
-                        handleLoginSubmit,
-                        handleLogout
-                    }}
-                >
-                    {this.props.children}
-                </AuthContext.Provider>
-            </div>
-        );
-    }
-}
-export default withRouter(AuthProvider);
+//     render() {
+//         const { state, handleSignupInput, handleSignupSubmit, handleLoginInput, handleLoginSubmit, handleLogout } = this;
+//         return (
+//             <div>
+//                 <AuthContext.Provider
+//                     value={{
+//                         state,
+//                         handleSignupInput,
+//                         handleSignupSubmit,
+//                         handleLoginInput,
+//                         handleLoginSubmit,
+//                         handleLogout
+//                     }}
+//                 >
+//                     {this.props.children}
+//                 </AuthContext.Provider>
+//             </div>
+//         );
+//     }
+// }
+// export default withRouter(AuthProvider);
 

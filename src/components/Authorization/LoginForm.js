@@ -1,5 +1,7 @@
 import React from "react";
+// import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import {
     MDBIcon,
@@ -24,10 +26,10 @@ class LoginForm extends React.Component {
         password: "",
         errors: {}
     }
-    schema = {
+    schema = Joi.object({
         email: Joi.string().email({ minDomainSegments: 2, tlds: ['com', 'net', 'es', 'org'] }).required().label('Email'),
         password: Joi.string().pattern(new RegExp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}')).required().label('Password')
-    }
+    })
     myValidate = () => {
         //const options = { abortEarly: false };
         const account = { email: this.state.email, password: this.state.password }
@@ -50,12 +52,14 @@ class LoginForm extends React.Component {
             email: this.state.email,
             password: this.state.password
         };
-        this.props.loginUser(userData);
+        // () => this.props.loginUserComponent(userData)
+        //this.props.loginUser(userData);
     };
     handleToggleActive = () => {
         this.props.onClickLogin();
 
     };
+
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.isAuthenticated) {
@@ -127,24 +131,24 @@ class LoginForm extends React.Component {
 
 
 }
-// LoginForm.propTypes = {
-//     loginUser: PropTypes.func.isRequired,
-//     auth: PropTypes.object.isRequired,
 
 
-// }
 const mapStateToProps = state => ({
-    user: state.auth.user,
+    // user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated
 });
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         loginUser: userData => dispatch(loginUser(userData))
+//     }
+// }
+// console.log(loginUser + "**********loginuser");
+
 const mapDispatchToProps = dispactch => ({
-    loginUser: () => dispactch(loginUser())
+    loginUserComponent: (userData) => dispactch(loginUser(userData))
 });
 
-// const mapStateToProps = state => ({
-//     auth: state.auth
 
-// })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm));
 

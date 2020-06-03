@@ -11,7 +11,8 @@ export default function () {
             toast,
             api
 
-        ]
+        ],
+        devTools: true
 
     })
 }

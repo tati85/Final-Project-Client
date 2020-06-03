@@ -11,7 +11,6 @@ import MyLoginFormPage from "./components/Landing/MyLogin";
 
 const store = configureStore();
 
-
 class App extends Component {
   render() {
     return (
