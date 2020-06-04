@@ -12,23 +12,22 @@ const slice = createSlice({
 
     },
     reducers: {
-        setCurrentUser: (user, action) => {
-            user.isAuthenticated = !isEmpty(action.payload);
-            user.user = action.payload;
-            user.loading = false;
+        setCurrentUser: (users, action) => {
+            users.isAuthenticated = !isEmpty(action.payload);
+            users.user = action.payload;
+            users.loading = false;
         },
-        setUserLoading: (user, action) => {
-            user.loading = true;
+        setUserLoading: (users, action) => {
+            users.loading = true;
         },
-        setUserLoadingFail: (user, action) => {
-            user.loading = false;
+        setUserLoadingFail: (users, action) => {
+            users.loading = false;
         }
     }
 })
 
 const { setCurrentUser, setUserLoading, setUserLoadingFail } = slice.actions;
 export default slice.reducer;
-
 export const loginUser = user =>
     apiRequest({
         url: url.loginUrl,

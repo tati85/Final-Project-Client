@@ -16,8 +16,9 @@ import {
     MDBAnimation
 } from "mdbreact";
 import "./Mylogin.css";
-import LoginForm from "../Authorization/LoginForm";
+//import LoginForm from "../Authorization/LoginForm";
 import SingupForm from '../Authorization/SingupForm';
+import LoginHooks from '../Authorization/LoginHooks';
 
 class MyLoginFormPage extends React.Component {
     state = {
@@ -118,7 +119,7 @@ class MyLoginFormPage extends React.Component {
                                 <MDBCol md="6" xl="5" className="mb-4">
                                     <MDBAnimation type="fadeInRight" delay=".7s">
                                         {loginShow
-                                            ? <LoginForm onClickLogin={this.toggleLogin} />
+                                            ? <LoginHooks onClickLogin={this.toggleLogin} />
                                             : <SingupForm onClickLogin={this.toggleLogin} />
                                         }
                                     </MDBAnimation>

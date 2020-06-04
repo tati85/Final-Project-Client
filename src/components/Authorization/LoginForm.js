@@ -1,8 +1,5 @@
 import React from "react";
-// import { bindActionCreators } from "redux";
-import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-
+import { withRouter } from "react-router-dom";
 import {
     MDBIcon,
     MDBBtn,
@@ -12,13 +9,9 @@ import {
 
 } from "mdbreact";
 import { connect } from 'react-redux';
-import { loginUser } from "../../actions/authActions";
-// import PropTypes from "prop-types";
-// import classnames from "classnames";
-//import ReactJoiValidations from 'react-joi-validation'
-import Joi from '@hapi/joi'
+import Joi from '@hapi/joi';
 
-//ReactJoiValidations.setJoi(Joi);
+
 
 class LoginForm extends React.Component {
     state = {
@@ -52,8 +45,8 @@ class LoginForm extends React.Component {
             email: this.state.email,
             password: this.state.password
         };
-        // () => this.props.loginUserComponent(userData)
-        //this.props.loginUser(userData);
+
+        this.props.loginUser(userData);
     };
     handleToggleActive = () => {
         this.props.onClickLogin();
@@ -134,15 +127,8 @@ class LoginForm extends React.Component {
 
 
 const mapStateToProps = state => ({
-    // user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated
 });
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         loginUser: userData => dispatch(loginUser(userData))
-//     }
-// }
-// console.log(loginUser + "**********loginuser");
 
 const mapDispatchToProps = dispactch => ({
     loginUserComponent: (userData) => dispactch(loginUser(userData))
