@@ -25,8 +25,6 @@ const api = ({ dispatch }) => next => async action => {
     } catch (err) {
         dispatch(actions.apiFail(err.message));
         if (onError) dispatch({ type: onError, payload: err.message });
-
-
     }
 
 }
