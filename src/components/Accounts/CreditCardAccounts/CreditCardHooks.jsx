@@ -12,24 +12,15 @@ const CreditCardHooks = () => {
             public_token: token,
             metadata: metadata
         };
+
         console.log(plaidData.public_token)
         console.log(metadata.institution.name)
 
         dispatch(addCreditAccount(plaidData));
         dispatch(loadTransactions(accounts));
     };
-    const tableItems = () => {
-        if (!accounts)
-            return <tr></tr>
-        return accounts.map(account => {
-            <tr key={account._id}>
-                <td>{account.institutionName} {account.accountName}</td>
-                <td>$ {account.balace}</td>
-                <td>$ {account.available}</td>
-                <td><MDBBtn outline color="secondary" onClick={() => this.onDeleteClick(account._id)}> Delete <MDBIcon icon="far fa-trash-alt" className="ml-1"></MDBIcon></MDBBtn></td>
-            </tr>
-        })
-    }
+
+
 
     return (
         <div>
@@ -60,7 +51,14 @@ const CreditCardHooks = () => {
                             </tr>
                         </MDBTableHead>
                         <MDBTableBody>
-                            {tableItems()}
+                            {accounts && accounts.map(account => {
+                                return <tr key={account._id}>
+                                    <td>{account.institutionName} {account.accountName}</td>
+                                    <td>$ {account.balace}</td>
+                                    <td>$ {account.available}</td>
+                                    <td><MDBBtn outline color="secondary" onClick={() => this.onDeleteClick(account._id)}> Delete <MDBIcon icon="far fa-trash-alt" className="ml-1"></MDBIcon></MDBBtn></td>
+                                </tr>
+                            })}
                         </MDBTableBody>
                     </MDBTable>
                 </div>
