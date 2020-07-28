@@ -1,13 +1,14 @@
 import React from 'react';
 import PlaidLinkButton from "react-plaid-link-button";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCreditAccount, loadTransactions } from '../../../store/creditCards/creditCardAccounts';
+import { addCreditAccount, loadTransactions, deleteAccount } from '../../../store/creditCards/creditCardAccounts';
 
 const CreditCardHooks = () => {
     const [loaded, setLoaded] = useState(false);
-    const accounts = useSelector(state => state.creditCards.accounts);
+    const accounts = useSelector(state => state.creditCards.accounts) || null;
     const dispatch = useDispatch();
-    handleOnSuccess = (token, metadata) => {
+
+    const handleOnSuccess = (token, metadata) => {
         const plaidData = {
             public_token: token,
             metadata: metadata
@@ -19,8 +20,6 @@ const CreditCardHooks = () => {
         dispatch(addCreditAccount(plaidData));
         dispatch(loadTransactions(accounts));
     };
-
-
 
     return (
         <div>
@@ -56,7 +55,7 @@ const CreditCardHooks = () => {
                                     <td>{account.institutionName} {account.accountName}</td>
                                     <td>$ {account.balace}</td>
                                     <td>$ {account.available}</td>
-                                    <td><MDBBtn outline color="secondary" onClick={() => this.onDeleteClick(account._id)}> Delete <MDBIcon icon="far fa-trash-alt" className="ml-1"></MDBIcon></MDBBtn></td>
+                                    <td><MDBBtn outline color="secondary" onClick={() => dispatch(deleteAccount(account._id))}> Delete <MDBIcon icon="far fa-trash-alt" className="ml-1"></MDBIcon></MDBBtn></td>
                                 </tr>
                             })}
                         </MDBTableBody>

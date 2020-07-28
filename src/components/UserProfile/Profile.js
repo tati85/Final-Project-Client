@@ -64,8 +64,7 @@ class MyProfile extends React.Component {
         this.setState(() => ({ image: file }));
     };
     render() {
-        // console.log(this.state.firstName + "  state first name")
-        // console.log(this.state.lastName + "  state last name")
+
         console.log(this.state.image + "  state first image")
         console.log(this.state.phoneNumber + "  state phone number")
         console.log(this.state.email + "  state first email")
